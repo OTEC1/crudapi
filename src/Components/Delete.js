@@ -17,8 +17,25 @@ const Delete =()  =>{
         }).then((respones) => {
             if(respones.status === 200)
                 fire.fire({title:'User Deleted',text:'ok',icon:'success'})
+            else
+                console.log("Nothing")
         })
     }
+
+
+    const handleuserID = (e,n) => {
+        const value = e.target.value.replace(/\D/g, "");
+
+        if(!value.toString().startsWith("A-Z") && value.toString().length > 0 ){
+               setuserID(value);
+               setapprove(true)
+        }else{
+            setuserID('');
+            setapprove(false)
+        }
+           
+    } 
+
 
     return (
         <Components>
@@ -35,7 +52,7 @@ const Delete =()  =>{
 
                     <tr>
                         <td>
-                        <input onChange={(e) => setuserID(e.target.value)}  value={userID} placeholder="User ID"/>
+                        <input onChange={(e) =>handleuserID(e)}    value={userID}     placeholder="User ID"/>
                         </td>
                     </tr>
     
